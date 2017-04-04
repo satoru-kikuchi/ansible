@@ -1,0 +1,8 @@
+---
+ - name: ファイルをコピーサンプルPlay
+   hosts: all
+   tasks:
+     - name: Ansible稼働マシン上のファイルをリモートにコピー
+       copy:
+         src: original_file
+         dest: ~/copied_file

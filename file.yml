@@ -1,9 +1,13 @@
 ---
- - name: Link作成サンプルPlay
+ - name: 権限変更サンプル
    hosts: all
+   become: true
    tasks:
-     - name: /tmp/dir1のシンボリックリンクを/tmp/link_to_dir1に作成
+     - name: /tmp/dir1をansibleAdminユーザー/グループの所有にし、全ユーザーから実行可能にする
        file:
-         src: /tmp/dir1
-         dest: /tmp/link_to_dir1
-         state: link
+         path: /tmp/dir1
+         state: directory
+         owner: vagrant
+         group: vagrant
+         mode: "u=rwx,g=rx,o=rx"
+
