@@ -1,0 +1,9 @@
+---
+ - name: Link作成サンプルPlay
+   hosts: all
+   tasks:
+     - name: /tmp/dir1のシンボリックリンクを/tmp/link_to_dir1に作成
+       file:
+         src: /tmp/dir1
+         dest: /tmp/link_to_dir1
+         state: link
