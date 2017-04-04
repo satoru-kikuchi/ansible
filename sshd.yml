@@ -1,0 +1,19 @@
+---
+ - name: sshd設定Play
+   hosts: all
+   become: true
+   tasks: 
+     - name: rootへのパスワードでのSSHログインを禁止
+       lineinfile:
+         dest: /etc/ssh/sshd_config
+         regexp: '^PermitRootLogin\s+'
+         line: PermitRootLogin without-password
+         validate: sshd -t -f %s
+       notify
+         - sshd再起動
+   handlers:
+     - name: sshd再起動
+       service:
+         name: sshd
+         state: restarted
+

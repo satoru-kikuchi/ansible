@@ -1,0 +1,9 @@
+---
+ - name: SSH鍵生成サンプルPlay
+   hosts: all
+   tasks:
+     - name: tmpディレクトリ内にパスフレーズなしのSSH鍵を生成
+       command: "/usr/bin/ssh-keygen -b 2048 -t rsa -N '' -f /tmp/new-id_rsa"
+       args:
+         creates: /tmp/new-id_rsa
+
